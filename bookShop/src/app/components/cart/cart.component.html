@@ -1,0 +1,12 @@
+<aside class="aside">
+  <div class="cart">
+    <p>cart works!</p>
+    <div  *ngFor = "let item of cart;index as index">
+      <app-cart-item [item] = "item" ></app-cart-item>
+      <button (click) = "encrease(index)">+</button>
+      <button (click) = "decrease(index)">-</button>
+      <button (click) = "delete(index)">Delete</button>
+    </div>
+  </div>
+</aside>
+
