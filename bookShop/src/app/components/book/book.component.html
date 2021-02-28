@@ -1,0 +1,23 @@
+<div>
+  <h3>
+    {{book?.name}}
+  </h3>
+  <p>
+    Description: {{book?.description}}
+  </p>
+  <p>
+    Published: {{book?.createDate | date}}
+  </p>
+  <p>
+    Category: {{book?.category}}
+  </p>
+  <p>
+    <img src="{{book?.thumbnailUrl}}" alt="">
+  </p>
+  <p>
+    Price: $ {{book?.price}}
+  </p>
+  <button [disabled]="!book?.isAvailable" (click) = "buyBook(book)">
+    Buy
+  </button>
+</div>
