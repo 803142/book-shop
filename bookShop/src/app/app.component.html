@@ -1,18 +1,11 @@
 <h1 #appTitle (click)="appTitle.textContent = 'BookShop'"></h1>
 
 <main class="main">
-  <div *ngFor = "let book of books; index as i">
-    <app-book [book]="book" (buyBookEvent) = "addToCart(book)"></app-book>
-  </div>
+  <app-book-list></app-book-list>
 </main>
 
+<app-cart></app-cart>
 
-<ng-container *ngIf="cart.length>0">
-  <app-cart [cart]="cart"
-  (encreaseCartItemEvent) = "encreaseCartItem($event)"
-  (decreaseCartItemEvent) = "decreaseCartItem($event)"
-  (deleteCartItemEvent) = "deleteCartItem($event)"
-  ></app-cart>
-</ng-container>
+
 
 <router-outlet></router-outlet>
