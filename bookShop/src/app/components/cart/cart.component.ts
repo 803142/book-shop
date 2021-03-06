@@ -1,29 +1,35 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ICartItem } from 'src/app/models/cart-item.model';
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
+import { ICartProduct } from 'src/app/models/cart-data.model';
+
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
 })
-export class CartComponent {
-  @Input() cart: ICartItem[] | [] | undefined;
+export class CartComponent implements OnChanges {
+  cartData = this.cartService.getCartData();
 
-  @Output() encreaseCartItemEvent = new EventEmitter<number>();
+  constructor(private cartService: CartService) {}
 
-  @Output() decreaseCartItemEvent = new EventEmitter<number>();
-
-  @Output() deleteCartItemEvent = new EventEmitter<number>();
-
-  encrease(index: number) {
-    this.encreaseCartItemEvent.emit(index);
+  increaseQuantity(item: ICartProduct) {
+    this.cartService.increaseQuantity(item);
   }
 
-  decrease(index: number) {
-    this.decreaseCartItemEvent.emit(index);
+  decreaseQuantity(item: ICartProduct) {
+    this.cartService.decreaseQuantity(item);
   }
 
-  delete(index: number) {
-    this.deleteCartItemEvent.emit(index);
+  delete(item: ICartProduct) {
+    this.cartService.removeBook(item);
+  }
+
+  updateCartData() {
+    this.cartService.updateCartData();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
   }
 }

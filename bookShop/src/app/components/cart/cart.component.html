@@ -1,12 +1,13 @@
 <aside class="aside">
   <div class="cart">
-    <p>cart works!</p>
-    <div  *ngFor = "let item of cart;index as index">
-      <app-cart-item [item] = "item" ></app-cart-item>
-      <button (click) = "encrease(index)">+</button>
-      <button (click) = "decrease(index)">-</button>
-      <button (click) = "delete(index)">Delete</button>
+    <h3>cart works!</h3>
+    <div  *ngFor = "let item of cartData.cartProducts;">
+      <app-cart-item [item] = "item" (needUpdateData) = "updateCartData()"></app-cart-item>
+      <button (click) = "increaseQuantity(item)">+</button>
+      <button (click) = "decreaseQuantity(item)">-</button>
+      <button (click) = "delete(item)">Delete</button>
     </div>
+    <div> Quantity: {{cartData.totalQuantity}} Sum: {{cartData.totalSum}}</div>
   </div>
 </aside>
 
